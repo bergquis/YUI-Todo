@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <link rel="apple-touch-icon" href="img/appicon.png" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen, mobile" />
+
+    <title>ToDo</title>
+    <meta name="description" content="Local storage todo-list built on YUI" />
+  </head>
+
+  <body>
+    <div id="todo-app">
+      <input type="text" id="new-todo" class="todo-input"
+	     placeholder="New task">
+      <ul id="todo-list"></ul>
+      <div id="todo-stats"></div>
+    </div>
+
+    <!-- todo item template -->
+    <script type="text/x-template" id="todo-item-template">
+      <div class="todo-view">
+	<input type="checkbox" class="todo-checkbox" {checked} />
+	<span class="todo-content" tabindex="0">{text}</span>
+      </div>
+
+      <div class="todo-edit">
+	<input type="text" class="todo-input" value="{text}" />
+      </div>
+
+      <a href="#" class="todo-remove" title="Remove task">
+	<span class="todo-remove-icon"></span>
+      </a>
+    </script>
+
+    <!-- statistics template -->
+    <script type="text/x-template" id="todo-stats-template">
+      <span class="todo-count">
+	<span class="todo-remaining">{numRemaining}</span>
+	<span class="todo-remaining-label">{remainingLabel}</span> left.
+      </span>
+
+      <a href="#" class="todo-clear">
+	Clear <span class="todo-done">{numDone}</span>
+	completed <span class="todo-done-label">{doneLabel}</span>
+      </a>
+    </script>
+    
+    <script src="http://yui.yahooapis.com/3.4.1/build/yui/yui-min.js"></script>
+    <script src="todo.min.js"></script>
+    <script>
+      YUI().use('todo-app', function(Y) {
+        new Y.ToDo.App({
+          container: '#todo-app',
+          inputNode: '#new-todo',
+          list: '#todo-list',
+          stats: '#todo-stats'
+        });
+      });
+    </script>
+  </body>
+</html>
